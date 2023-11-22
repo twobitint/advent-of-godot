@@ -1,21 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dc7y1ld5csucv"]
+[gd_scene load_steps=8 format=3 uid="uid://dc7y1ld5csucv"]
 
 [ext_resource type="Texture2D" uid="uid://bbgsf5g00anqb" path="res://assets/ocean/sub.png" id="1_ip5n3"]
 [ext_resource type="Script" path="res://2021/01/Floor.gd" id="2_1c7sm"]
 [ext_resource type="Script" path="res://2021/01/Sub.gd" id="3_5i4oo"]
 [ext_resource type="Texture2D" uid="uid://3gqo07ev8uo5" path="res://assets/ocean/warped/night/middle.png" id="4_tg84t"]
 [ext_resource type="Texture2D" uid="uid://5veic3jaefus" path="res://assets/ocean/floor_strip1.png" id="5_wt2pl"]
+[ext_resource type="Texture2D" uid="uid://ck7a337pjcdv8" path="res://assets/ocean/floor_strip2.png" id="6_4mauq"]
+[ext_resource type="Script" path="res://2021/01/Counter.gd" id="7_yacla"]
 
-[node name="Node2D" type="Node2D"]
+[node name="DayOne" type="Node2D"]
 
-[node name="Counter" type="RichTextLabel" parent="."]
-offset_right = 322.0
-offset_bottom = 114.0
-theme_override_font_sizes/normal_font_size = 30
-text = "Hello, world!"
-
-[node name="Sub" type="RigidBody2D" parent="."]
-gravity_scale = 2.66454e-15
+[node name="Sub" type="CharacterBody2D" parent="."]
+motion_mode = 1
 script = ExtResource("3_5i4oo")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sub"]
@@ -26,6 +22,13 @@ texture = ExtResource("1_ip5n3")
 
 [node name="Camera2D" type="Camera2D" parent="Sub"]
 position = Vector2(94, 210)
+
+[node name="Label" type="Label" parent="Sub"]
+visible = false
+offset_left = 65.0
+offset_top = 261.0
+offset_right = 148.81
+offset_bottom = 289.79
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -39,5 +42,16 @@ scale = Vector2(8.40972, 5.29167)
 texture = ExtResource("4_tg84t")
 
 [node name="Floor" type="Node2D" parent="."]
+position = Vector2(-493, 281)
 script = ExtResource("2_1c7sm")
-_texture = ExtResource("5_wt2pl")
+_texture1 = ExtResource("5_wt2pl")
+_texture2 = ExtResource("6_4mauq")
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="Output" type="RichTextLabel" parent="Canvas"]
+offset_right = 322.0
+offset_bottom = 114.0
+theme_override_font_sizes/normal_font_size = 30
+text = "Hello, world!"
+script = ExtResource("7_yacla")

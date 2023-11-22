@@ -1,3 +1,6 @@
+Label
+CharacterBody2D
+CanvasLayer
 Node2D
 TileMap
 Sprite2D

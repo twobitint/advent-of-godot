@@ -14,6 +14,6 @@ config/name="Advent of Godot"
 run/main_scene="res://2021/01/01.tscn"
 config/features=PackedStringArray("4.1")
 
-[rendering]
+[editor]
 
-renderer/rendering_method="mobile"
+movie_writer/movie_file="C:/Users/jtlab/github/advent-of-godot/demo.avi"
