@@ -1,32 +1,40 @@
 extends CharacterBody2D
 
-var _last_depth = null
-var _increase_counter = 0
+@onready var _floor = get_node("/root/DayOne/Floor")
+@onready var _output = get_node("/root/DayOne/Canvas/Output")
 
-var _speed = 20000
+var _last_depth = 999999
+var _increases = 0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-    pass
+const SPEED = 40000 
+const FLOAT = 50 # Try to stay this far above floor
+const WIDTH = 16 # Scanner resolution width
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-    var depth = get_node("/root/DayOne/Floor").scan(position.x)
-    $Label.text = "Depth: %d" % depth
-    get_node("/root/DayOne/Canvas/Output").depth = depth
+    var target_depth = _floor.scan(position.x)
+    _output.depth = target_depth
     
-    if _last_depth == null:
-        _last_depth = depth
+    # if _last_depth == null:
+    #     _last_depth = depth
         
-    if _last_depth < depth:
-        _increase_counter += 1
-        get_node("/root/DayOne/Canvas/Output").count = _increase_counter
+    # if _last_depth < depth:
+    #     _increases += 1
+    #     _output.count = _increases
     
-    var target = depth - 50
-    
-    velocity = position.direction_to(Vector2(position.x + 200, target)) * delta * _speed
+    var target = target_depth - FLOAT
+    velocity = position.direction_to(Vector2(position.x + 200, target)) * delta * SPEED
         
-    # move_toward()
+    var x0 = position.x
         
     move_and_slide()
-    _last_depth = depth
+    # _last_depth = depth
+
+    var x1 = position.x
+    
+    for x in range(x0, x1):
+        var depth = _floor.scan(x)
+        if depth > _last_depth:
+            _increases += 1
+            _output.count = _increases
+        _last_depth = depth

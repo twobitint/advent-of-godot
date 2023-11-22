@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://2021/01/Sub.gd" id="3_5i4oo"]
 [ext_resource type="Texture2D" uid="uid://3gqo07ev8uo5" path="res://assets/ocean/warped/night/middle.png" id="4_tg84t"]
 [ext_resource type="Texture2D" uid="uid://5veic3jaefus" path="res://assets/ocean/floor_strip1.png" id="5_wt2pl"]
-[ext_resource type="Texture2D" uid="uid://ck7a337pjcdv8" path="res://assets/ocean/floor_strip2.png" id="6_4mauq"]
+[ext_resource type="Texture2D" path="res://assets/ocean/floor_strip2.png" id="6_4mauq"]
 [ext_resource type="Script" path="res://2021/01/Counter.gd" id="7_yacla"]
 
 [node name="DayOne" type="Node2D"]
