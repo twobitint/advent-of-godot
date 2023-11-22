@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc7y1ld5csucv"]
+
+[ext_resource type="Texture2D" uid="uid://bbgsf5g00anqb" path="res://assets/ocean/sub.png" id="1_ip5n3"]
+[ext_resource type="Script" path="res://2021/01/Floor.gd" id="2_1c7sm"]
+[ext_resource type="Script" path="res://2021/01/Sub.gd" id="3_5i4oo"]
+[ext_resource type="Texture2D" uid="uid://3gqo07ev8uo5" path="res://assets/ocean/warped/night/middle.png" id="4_tg84t"]
+[ext_resource type="Texture2D" uid="uid://5veic3jaefus" path="res://assets/ocean/floor_strip1.png" id="5_wt2pl"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Counter" type="RichTextLabel" parent="."]
+offset_right = 322.0
+offset_bottom = 114.0
+theme_override_font_sizes/normal_font_size = 30
+text = "Hello, world!"
+
+[node name="Sub" type="RigidBody2D" parent="."]
+gravity_scale = 2.66454e-15
+script = ExtResource("3_5i4oo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sub"]
+position = Vector2(94, 210)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("1_ip5n3")
+
+[node name="Camera2D" type="Camera2D" parent="Sub"]
+position = Vector2(94, 210)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1209.78, 2.08165e-12)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(572.5, 83.0001)
+scale = Vector2(8.40972, 5.29167)
+texture = ExtResource("4_tg84t")
+
+[node name="Floor" type="Node2D" parent="."]
+script = ExtResource("2_1c7sm")
+_texture = ExtResource("5_wt2pl")
