@@ -5,36 +5,45 @@ signal bounced(depth)
 @export var _texture1: Texture2D
 @export var _texture2: Texture2D
 
-var _starting_depth = null
 var _floor = []
 var _fnl = FastNoiseLite.new()
+var _endx = 0
+
+const WIDTH = 16
 
 func scan(x):
-    x -= position.x - 50
-    return _floor[x / 16.0]
+    return _floor[x / WIDTH]
+    
+func is_done(x):
+    return x / WIDTH >= _endx
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
     var file = FileAccess.open('res://2021/01/input.txt', FileAccess.READ)
-    var input = file.get_as_text()
+    var input = file.get_as_text().left(-1) # Remove extra \n at eof
 
+    var left_pad = 100
+    var right_pad = 200
     var lines = input.split('\n')
-    var _starting_depth = int(lines[0])
+    var depth0 = int(lines[0])
+    var depth1 = int(lines[len(lines) - 1])
+    _endx = len(lines) - 1 + left_pad
     
-    # Prep left-padding
-    for x in range(0, 50):
-        _floor.append(_starting_depth)
+    # Left padding
+    for x in range(0, left_pad):
+        _floor.append(depth0)
         
+    # Real input data
     for line in lines:
         _floor.append(int(line))
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-    pass
+        
+    # Right padding
+    for x in range(0, right_pad):
+        _floor.append(depth1)
 
 func _draw():
     for x in len(_floor):
-        draw_texture(_texture(x), Vector2(x * 16, _floor[x]))
+        draw_texture(_texture(x), Vector2(x * WIDTH, _floor[x]))
 
 func _texture(x):
     if int(_fnl.get_noise_1d(x) * 100) % 2 == 0:

@@ -11,17 +11,18 @@
 [node name="DayOne" type="Node2D"]
 
 [node name="Sub" type="CharacterBody2D" parent="."]
+position = Vector2(0, 210)
 motion_mode = 1
 script = ExtResource("3_5i4oo")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sub"]
-position = Vector2(94, 210)
+position = Vector2(2.08165e-12, 2.08165e-12)
 rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("1_ip5n3")
 
 [node name="Camera2D" type="Camera2D" parent="Sub"]
-position = Vector2(94, 210)
+position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="Label" type="Label" parent="Sub"]
 visible = false
@@ -42,7 +43,7 @@ scale = Vector2(8.40972, 5.29167)
 texture = ExtResource("4_tg84t")
 
 [node name="Floor" type="Node2D" parent="."]
-position = Vector2(-493, 281)
+position = Vector2(0, 77)
 script = ExtResource("2_1c7sm")
 _texture1 = ExtResource("5_wt2pl")
 _texture2 = ExtResource("6_4mauq")
