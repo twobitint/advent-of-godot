@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccnccv33lenio"]
+
+[ext_resource type="Script" path="res://2023/01/Document.gd" id="1_c1057"]
+[ext_resource type="Texture2D" uid="uid://ct5ooy3ksjs0y" path="res://assets/elf/mag1.png" id="2_phuti"]
+[ext_resource type="Script" path="res://2023/01/Elf.gd" id="3_yyjwm"]
+
+[node name="PartOne" type="Node2D"]
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="Output" type="RichTextLabel" parent="Canvas"]
+offset_right = 322.0
+offset_bottom = 114.0
+theme_override_font_sizes/normal_font_size = 30
+text = "Hello, world!"
+
+[node name="Label" type="Label" parent="."]
+offset_top = 50.0
+offset_right = 577.0
+offset_bottom = 50059.0
+scale = Vector2(2, 2)
+horizontal_alignment = 1
+justification_flags = 128
+script = ExtResource("1_c1057")
+
+[node name="Elf" type="Sprite2D" parent="."]
+position = Vector2(184, 286)
+rotation = 1.50796
+texture = ExtResource("2_phuti")
+script = ExtResource("3_yyjwm")

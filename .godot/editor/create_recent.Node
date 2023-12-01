@@ -1,9 +1,9 @@
+Sprite2D
 Label
 CharacterBody2D
 CanvasLayer
 Node2D
 TileMap
-Sprite2D
 ParallaxLayer
 ParallaxBackground
 RigidBody2D
