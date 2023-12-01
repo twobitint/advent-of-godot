@@ -17,39 +17,34 @@ func _process(delta):
     if split.size() > 1:
         self.text = split[1]    
         
-    var line = split[0]
-    _sum += int(_scan(line) + _scan(line, true))
+    var line = _part2(split[0])
+    var first = null
+    var last = null
+    for char in line.split(''):
+        if char.is_valid_int():
+            if first == null:
+                first = char
+            last = char
+    _sum += int(first + last)
     _output.text = "Sum: %d" % _sum 
     
     if split.size() == 1:
         queue_free()
         return
     
-func _scan(line, reverse = false):
-    var words = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+func _part2(line: String) -> String:
+    var map = {
+        "one": "o1e",
+        "two": "t2",
+        "three": "t3e",
+        "four": "4",
+        "five": "5e",
+        "six": "6",
+        "seven": "7n",
+        "eight": "e8t",
+        "nine": "n9e",
+    }
+    for num in map:
+        line = line.replace(num, map[num])
+    return line    
     
-    if reverse:
-        line = Santa.string_reverse(line)
-        for i in words.size():
-            words[i] = Santa.string_reverse(words[i])
-    
-    var tracker = ''
-    var i = -1
-    var chars = line.split('')
-    while i < chars.size():
-        i += 1
-        var char = chars[i]
-        if char.is_valid_int():
-            return char
-        else:
-            tracker += char
-            var on_track = false
-            for j in words.size():
-                var word = words[j]
-                if word == tracker:
-                    return str(j + 1)
-                if Santa.string_starts_with(word, tracker):
-                    on_track = true
-            if not on_track:
-                i -= tracker.length() - 1
-                tracker = ''
